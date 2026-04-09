@@ -121,7 +121,7 @@
             font-size: 2.4rem;
             font-weight: 800;
             margin-bottom: 4px;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .hero-text .title {
@@ -201,7 +201,7 @@
         .section-title {
             font-size: 1.4rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 28px;
             display: flex;
             align-items: center;
@@ -311,7 +311,7 @@
 
         .timeline-header h3 {
             font-size: 1.1rem;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .timeline-header .company {
@@ -435,7 +435,7 @@
 
         .edu-card h3 {
             font-size: 1rem;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .edu-card .degree {
@@ -485,7 +485,7 @@
 
         .cert-info h4 {
             font-size: 0.9rem;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .cert-info p {
@@ -524,7 +524,7 @@
 
         .product-card h4 {
             font-size: 0.9rem;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 4px;
         }
 
@@ -554,7 +554,7 @@
 
         .community-item h4 {
             font-size: 0.9rem;
-            color: #f1f5f9;
+            color: var(--text);
         }
 
         .community-item p {
@@ -590,7 +590,7 @@
 
         .lang-card h4 {
             font-size: 0.9rem;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 8px;
         }
 
@@ -621,7 +621,7 @@
 
         .contact-section h2 {
             font-size: 1.6rem;
-            color: #f1f5f9;
+            color: var(--text);
             margin-bottom: 8px;
         }
 
@@ -667,8 +667,8 @@
             font-size: 0.9rem;
             transition: all 0.2s;
             border: 1px solid var(--border);
-            color: var(--text-secondary);
-            background: rgba(15, 23, 42, 0.6);
+            color: var(--text);
+            background: var(--card);
         }
 
         .social-link:hover {
@@ -703,14 +703,106 @@
             .timeline { padding-left: 24px; }
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            background: var(--card);
+            border: 1px solid var(--border-light);
+            color: var(--text);
+            padding: 8px 14px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Light Mode Variables */
+        body.light {
+            --brand-950: #f8fafc;
+            --brand-900: #f1f5f9;
+            --brand-850: #e9f0f8;
+            --brand-800: #dde7f3;
+            --brand-700: #c8d9ec;
+            --brand-600: #aec5de;
+            --accent: #008f72;
+            --accent-light: #00b892;
+            --accent-dim: #007a61;
+            --accent-glow: rgba(0, 143, 114, 0.12);
+            --secondary: #0284c7;
+            --secondary-light: #0ea5e9;
+            --text: #1e293b;
+            --text-light: #334155;
+            --text-muted: #64748b;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-light: rgba(0, 0, 0, 0.12);
+            --card: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.95);
+            --gradient: linear-gradient(135deg, #e9f0f8 0%, #dde7f3 50%, #c8d9ec 100%);
+            --gradient-accent: linear-gradient(135deg, #008f72 0%, #0284c7 100%);
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        body.light .section-title,
+        body.light .timeline-header h3,
+        body.light .hero-text h1 {
+            color: #0f172a;
+        }
+
+        body.light .available-badge {
+            background: rgba(0, 143, 114, 0.1);
+            border-color: rgba(0, 143, 114, 0.3);
+        }
+
+        body.light .timeline-item:hover {
+            box-shadow: 0 4px 20px rgba(0, 143, 114, 0.08);
+        }
+
+        body.light .timeline-item::before {
+            border-color: #f8fafc;
+        }
+
+        body.light footer {
+            border-top-color: rgba(0,0,0,0.1);
+        }
+
+        body.light .hero::after {
+            background: #f8fafc;
+        }
+
+        body.light .timeline-header .period {
+            background: rgba(0,0,0,0.05);
+        }
+
         /* Print styles */
         @media print {
             body { background: #0a1120 !important; -webkit-print-color-adjust: exact; }
             .contact-btn { display: none; }
+            .theme-toggle { display: none; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode">
+        <span id="themeIcon">&#9728;&#65039;</span>
+        <span id="themeLabel">Light</span>
+    </button>
 
     <!-- Hero -->
     <header class="hero">
@@ -1188,6 +1280,23 @@
     <footer>
         <p>&copy; 2026 Barry Chai Chun Ket. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const isLight = body.classList.toggle('light');
+            document.getElementById('themeIcon').textContent = isLight ? '\uD83C\uDF19' : '\u2600\uFE0F';
+            document.getElementById('themeLabel').textContent = isLight ? 'Dark' : 'Light';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+
+        // Restore saved preference
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+            document.getElementById('themeIcon').textContent = '\uD83C\uDF19';
+            document.getElementById('themeLabel').textContent = 'Dark';
+        }
+    </script>
 
 </body>
 </html>
